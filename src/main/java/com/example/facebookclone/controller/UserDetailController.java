@@ -4,26 +4,35 @@ package com.example.facebookclone.controller;
 import com.example.facebookclone.model.UserDetails;
 import com.example.facebookclone.services.serviceimplementation.UserServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("/")
 public class UserDetailController {
 
     private UserServiceImpl userService;
 
     public UserDetailController(UserServiceImpl userService) {
+
         this.userService = userService;
     }
 
-    @GetMapping
-    public String index() {
-
+    @GetMapping("/")
+    public String register(Model model) {
+        model.addAttribute("registerRequest", new UserDetails());
         return "signup";
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("loginRequest", new UserDetails());
+        return "signin";
+    }
+
+    @PostMapping("/signup")
     public ModelAndView save(@ModelAttribute UserDetails userDetails) {
 
         System.out.println(userDetails);
@@ -44,5 +53,16 @@ public class UserDetailController {
         return modelAndView;
     }
 
-    @PostMapping
+    @PostMapping("/login")
+    public String login(@ModelAttribute UserDetails userDetails, Model model, HttpSession httpSession) {
+        System.out.println("Login request: " + userDetails);
+        UserDetails loggedIn = userService.login(userDetails.getEmail(), userDetails.getPassword());
+        if(loggedIn != null) {
+            httpSession.setAttribute("user", loggedIn);
+            model.addAttribute("userLogin", loggedIn.getFirst_name() + " " + loggedIn.getLast_name());
+            return "home";
+        } else {
+            return "signin";
+        }
+    }
 }

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xlmn="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,12 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../static/home.css">
+    <link rel="stylesheet" href="css/home.css">
 
-    <title>MediaBook</title>
-
-   
-
+    <title>Facebook</title>
 
 </head>
 
@@ -26,7 +23,7 @@
 <nav>
     <div class="nav-left">
         <img src="./images/logo.png" alt="Logo">
-        <input type="text" placeholder="Search Mediabook..">
+        <input type="text" placeholder="Search">
     </div>
 
     <div class="nav-middle">
@@ -66,7 +63,7 @@
         <ul>
             <li>
                 <span class="profile"></span>
-                <p>Aashish Panthi</p>
+                <p><span th:text="${userLogin}"></span></p>
             </li>
             <li>
                 <i class="fa fa-user-friends"></i>
@@ -143,7 +140,7 @@
                 <div class="dp-container">
                     <img src="./images/girl.jpg" alt="">
                 </div>
-                <p class="name">Anuska Sharma</p>
+                <p class="name">Flora Egwu</p>
             </div>
 
             <div class="story">
@@ -151,7 +148,7 @@
                 <span class="dp-container">
                         <img src="./images/dp.jpg" alt="Profile pic">
                     </span>
-                <span class="name">Gaurav Gall</span>
+                <span class="name">Uchenna Ogbonna</span>
             </div>
 
             <div class="story">
@@ -159,7 +156,7 @@
                 <span class="dp-container">
                         <img src="./images/boy.jpg" alt="Profile pic">
                     </span>
-                <span class="name">Priyank Saksena</span>
+                <span class="name">Ifeanyi Otiwa</span>
             </div>
 
             <div class="story">
@@ -167,7 +164,7 @@
                 <span class="dp-container">
                         <img src="./images/model.jpg" alt="Profile pic">
                     </span>
-                <span class="name">Pragati Adhikari</span>
+                <span class="name">Prosper Amalaha</span>
             </div>
         </div>
 
@@ -177,8 +174,8 @@
                     <img src="./images/girl.jpg" alt="">
                 </div>
 
-                <a style="border: none; width:90%; padding: 6px;" href="post.html" class="btn btn-success">
-                    <input style="border:none; background:#eee; width: 85%; padding: 10px 6px; border-radius: 10px;" type="text" placeholder="What's on your mind, friends ?" />
+                <a style="border: none; width:90%; padding: 6px;" href="/post" class="btn btn-success">
+                    <input style="border:none; background:#eee; width: 85%; padding: 10px 6px; border-radius: 10px;" type="text" placeholder="What's on your mind?" />
                 </a>
 
             </div>
@@ -211,7 +208,7 @@
                     <img src="./images/girl.jpg" alt="">
                 </div>
                 <div class="post-info">
-                    <p class="name">Anuska Sharma</p>
+                    <p class="name">David Adeleke</p>
                     <span class="time">12 hrs ago</span>
                 </div>
                 <i class="fas fa-ellipsis-h"></i>
@@ -231,7 +228,7 @@
             </div>
 
             <div class="post-bottom">
-                <div class="action">
+                <div class="action" id="like-post">
                     <i class="far fa-thumbs-up"></i>
                     <span>Like</span>
                 </div>
@@ -264,7 +261,7 @@
     
     
     
-                <div class="action-btns">
+                <div class="action-btns" id="like-comment">
                     <button class="comment-btn" href="#"><i class="far fa-thumbs-up"></i> like</button>
                 </div>
                 <div class="action-btns">
@@ -327,49 +324,49 @@
                 <div class="dp">
                     <img src="./images/dp.jpg" alt="">
                 </div>
-                <p class="name">Henry Mosely</p>
+                <p class="name">Ifeanyi Otiwa</p>
             </a>
 
             <a class='friend' href="#">
                 <div class="dp">
                     <img src="./images/shoes.jpg" alt="">
                 </div>
-                <p class="name">George</p>
+                <p class="name">Ikechukwu Anene</p>
             </a>
 
             <a class="friend" href="#">
                 <div class="dp">
                     <img src="./images/boy.jpg" alt="">
                 </div>
-                <p class="name">Aakash Malhotra</p>
+                <p class="name">Warith Omojola</p>
             </a>
 
             <a class="friend" href="#">
                 <div class="dp">
                     <img src="./images/model.jpg" alt="">
                 </div>
-                <p class="name">Ragini Khanna</p>
+                <p class="name">Mercy Akingbade</p>
             </a>
 
             <a class="friend" href="#">
                 <div class="dp">
                     <img src="./images/boy.jpg" alt="">
                 </div>
-                <p class="name">Justin Bieber</p>
+                <p class="name">Usman Kulaha</p>
             </a>
 
             <a class="friend" href="#">
                 <div class="dp">
                     <img src="./images/dp.jpg" alt="">
                 </div>
-                <p class="name">Ramesh GC</p>
+                <p class="name">Jerry Bodam</p>
             </a>
 
             <a class="friend" href="#">
                 <div class="dp">
                     <img src="./images/model.jpg" alt="">
                 </div>
-                <p class="name">Sajita Gurung</p>
+                <p class="name">Stella Ajiboye</p>
             </a>
 
         </div>
@@ -391,6 +388,17 @@ var clear = document.getElementById('clear')
 var commentContainer = document.querySelector('.comment-container');
 var addComments = document.getElementById('edit-comment');
 var editComments = document.getElementById('make-comment');
+var likePost = document.getElementById('like-post');
+var likeComment = document.getElementById('like-comment')
+likeComment.addEventListener('click',function(){
+    this.classList.toggle("like-color");
+
+})
+
+likePost.addEventListener('click',function(){
+    this.classList.toggle("like-color");
+
+})
 addComments.addEventListener('click', function(){
     commentContainer.classList.toggle('showComment');
 

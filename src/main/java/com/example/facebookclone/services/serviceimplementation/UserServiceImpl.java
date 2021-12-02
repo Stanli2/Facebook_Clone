@@ -2,34 +2,39 @@ package com.example.facebookclone.services.serviceimplementation;
 
 import com.example.facebookclone.model.UserDetails;
 import com.example.facebookclone.repository.UserDetailRepository;
+import com.example.facebookclone.services.Services;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class UserServiceImpl {
+@org.springframework.stereotype.Service
+public class UserServiceImpl implements Services {
+
 
     private UserDetailRepository userDetailRepository;
-    private UserDetails userDetails;
+
 
     @Autowired
     public UserServiceImpl(UserDetailRepository userDetailRepository) {
         this.userDetailRepository = userDetailRepository;
     }
 
-    public List<UserDetails> findAllUser(){
-
+    @Override
+    public List<UserDetails> findAllUsers() {
         return userDetailRepository.findAll();
     }
 
-    public UserDetails saveUser(UserDetails userDetails){
-
+    @Override
+    public UserDetails saveUser(UserDetails userDetails) {
+        if(userDetailRepository.findByEmail(userDetails.getEmail()).isPresent()) {
+            System.out.println("You can't repeat this mail");
+            return null;
+        }
         return userDetailRepository.save(userDetails);
     }
 
-    public Optional<UserDetails> login(UserDetails userDetails) {
-        return userDetailRepository.findByEmailAndPassword(userDetails.getEmail(), userDetails.getPassword());
+    @Override
+    public UserDetails login(String email, String password) {
+        return userDetailRepository.findByEmailAndPassword(email, password).orElse(null);
     }
+
 }
