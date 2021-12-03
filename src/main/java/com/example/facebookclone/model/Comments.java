@@ -1,6 +1,5 @@
 package com.example.facebookclone.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,20 +12,20 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class Comments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    @Column(nullable = false)
-    private String message;
+    private String comment;
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime date_created = LocalDateTime.now();
+    private LocalDateTime dateCreated = LocalDateTime.now();
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserDetails userDetails;
-
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private UserDetails user;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "postId", referencedColumnName = "id")
+    private Post post;
 }

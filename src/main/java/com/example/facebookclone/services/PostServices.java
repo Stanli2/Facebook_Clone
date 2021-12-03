@@ -14,4 +14,6 @@ public interface PostServices {
 
     public Iterable<Post> getAllPost();
 
+    public void updatePost(Long id);
+
 }
