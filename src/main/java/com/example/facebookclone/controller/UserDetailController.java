@@ -2,6 +2,7 @@ package com.example.facebookclone.controller;
 
 
 import com.example.facebookclone.model.UserDetails;
+import com.example.facebookclone.services.serviceimplementation.PostServiceImplementation;
 import com.example.facebookclone.services.serviceimplementation.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import javax.servlet.http.HttpSession;
 public class UserDetailController {
 
     private UserServiceImpl userService;
+    private PostServiceImplementation postServiceImplementation;
 
-    public UserDetailController(UserServiceImpl userService) {
+    public UserDetailController(UserServiceImpl userService, PostServiceImplementation postServiceImplementation) {
 
         this.userService = userService;
+        this.postServiceImplementation = postServiceImplementation;
     }
 
     @GetMapping("/")
@@ -54,12 +57,14 @@ public class UserDetailController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute UserDetails userDetails, Model model, HttpSession httpSession) {
+    public String login(@ModelAttribute UserDetails userDetails, Model model, HttpSession httpSession, Model model1) {
         System.out.println("Login request: " + userDetails);
         UserDetails loggedIn = userService.login(userDetails.getEmail(), userDetails.getPassword());
         if(loggedIn != null) {
             httpSession.setAttribute("user", loggedIn);
             model.addAttribute("userLogin", loggedIn.getFirst_name() + " " + loggedIn.getLast_name());
+
+            postServiceImplementation.viewHomePage(model1);
             return "home";
         } else {
             return "signin";

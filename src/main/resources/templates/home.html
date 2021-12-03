@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" xlmn="http://www.thymeleaf.org">
+<html lang="en" xlmn="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -201,15 +201,15 @@
 
 
 
-        <div class="post created-post">
+        <div class="post created-post" th:each="post:${posts}">
 
             <div class="post-top">
                 <div class="dp">
                     <img src="./images/girl.jpg" alt="">
                 </div>
                 <div class="post-info">
-                    <p class="name">David Adeleke</p>
-                    <span class="time">12 hrs ago</span>
+                    <p class="name"><span th:text="${post.getUserDetails().getFirst_name()}"></span> <span th:text="${post.getUserDetails().getLast_name()}"></span></p>
+                    <span class="time"><span th:text="${post.getDate_created()}"></span></span>
                 </div>
                 <i class="fas fa-ellipsis-h"></i>
             </div>
@@ -217,9 +217,9 @@
             <div class="post-content">
                 <div></div>
 
-                <div class="title"><h4> </h4>  </div>
+                <div class="title"><h4> <span th:text="${post.getTitle()}"></span></h4>  </div>
 
-              <div class="post-body"> <p></p>😏</div>
+              <div class="post-body"> <p><span th:text="${post.getMessage()}"></span></div>
                 <div>
                     <img src="" alt="" />
 
@@ -241,7 +241,7 @@
 
                 </div>
                 <div class="action" id= "deleter">
-                    <a style="text-decoration: none; color: grey;" href=""> <i class="fa fa-trash"></i> Delete</a>
+                    <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i class="fa fa-trash"></i> Delete</a>
                 </div>
 
             </div>
@@ -250,7 +250,7 @@
 
         </div>
 
-
+<!--          Comment           -->
 
         <div class="comment-container">
      
@@ -265,7 +265,7 @@
                     <button class="comment-btn" href="#"><i class="far fa-thumbs-up"></i> like</button>
                 </div>
                 <div class="action-btns">
-                    <button class="comment-btn" href="#"><i class="fa fa-file"></i> post</button>
+                    <button class="comment-btn" href="#" th:href="${'update/' + post.getId()}"><i class="fa fa-file"></i> post</button>
     
                 </div>
                 <div class="action-btns">
@@ -275,27 +275,14 @@
                 <div class="action-btns">
                     <button class="comment-btn"  href=""> <i class="fa fa-trash"></i> Delete</button>
                 </div>
-    
-    
-    
-    
-    
-    
-                <!-- <input type="submit" value='Comment'>
-                <button id='clear' href='#'>Cancel</button> -->
+
               </div>
             </form>
           </div>
-
-
-
-
-                            <a style="text-decoration: none;  " href="" class="nav-link"></a>
+        <a style="text-decoration: none;  " href="" class="nav-link"></a>
 
 
     </div>
-
-
 
 
     <div class="right-panel">
@@ -314,7 +301,7 @@
                 <div class="dp">
                     <img src="./images/dp.jpg" alt="">
                 </div>
-                <p class="name">Cody Tutorials</p>
+                <p class="name">Java Tutorials</p>
             </a>
         </div>
 
