@@ -60,16 +60,29 @@ public class PostController {
         return "home";
     }
 
-    @PostMapping("/update/{postId}")
-    public String updatePost(@PathVariable String postId, HttpSession session, @RequestParam(value = "content") String message) {
+    @GetMapping("/editform/{id}")
+    public String editpost(@PathVariable(value = "id")Long id, Model model){
+        Post post = postServiceImplementation.getPostById(id);
+
+        //set post as a model to pre-populate the form
+        model.addAttribute("post", post);
+        return "editpost";
+
+    }
+
+    @PostMapping("/update/{id}")
+    public String updatePost(@PathVariable String id, HttpSession session, @RequestParam(value = "message") String message, Model model, @RequestParam(value = "title") String title) {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
-        Post post = postServiceImplementation.getPostById(Long.parseLong(postId));
+        Post post = postServiceImplementation.getPostById(Long.parseLong(id));
         boolean validOwner = post.getUserDetails().equals(userDetails);
         if(validOwner) {
+            post.setTitle(title);
             post.setMessage(message);
             post.setUserDetails(userDetails);
-            postServiceImplementation.updatePost(post.getId());
+            postServiceImplementation.createPost(post);
+
         }
+        postServiceImplementation.viewHomePage(model);
         return "home";
     }
 }

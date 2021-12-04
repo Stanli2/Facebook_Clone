@@ -237,7 +237,7 @@
                     <span>Comment</span>
                 </div>
                 <div class="action" id="edit-comment">
-                    <a  style="text-decoration: none; color:grey;" href="#"><i class="fa fa-edit"></i> Edit</a>
+                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
 
                 </div>
                 <div class="action" id= "deleter">

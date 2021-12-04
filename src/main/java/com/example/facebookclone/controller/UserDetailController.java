@@ -35,6 +35,12 @@ public class UserDetailController {
         return "signin";
     }
 
+    @GetMapping("/home")
+    public String viewHome(Model model){
+        postServiceImplementation.viewHomePage(model);
+        return "home";
+    }
+
     @PostMapping("/signup")
     public ModelAndView save(@ModelAttribute UserDetails userDetails) {
 

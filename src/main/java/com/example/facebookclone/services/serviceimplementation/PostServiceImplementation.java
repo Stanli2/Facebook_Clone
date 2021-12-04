@@ -37,10 +37,6 @@ public class PostServiceImplementation implements PostServices{
         return postRepository.findAll();
     }
 
-    @Override
-    public void updatePost(Long id) {
-        postRepository.findPostById(id);
-    }
 
 
     public void viewHomePage(Model model){
@@ -50,7 +46,7 @@ public class PostServiceImplementation implements PostServices{
 
         model.addAttribute("posts", posts);
         model.addAttribute("post", post);
-        model.addAttribute("comments", comments);
+        model.addAttribute("comment", comments);
 
     }
 }
