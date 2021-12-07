@@ -232,17 +232,75 @@
                     <i class="far fa-thumbs-up"></i>
                     <span>Like</span>
                 </div>
+<!--                {id}(id=${post.getId()})-->
                 <div class="action" id="make-comment">
-                    <i class="far fa-comment"></i>
+                    <a  style="text-decoration: none; color:grey;" th:href="@{'/createCommentForm/'+${post.getId()}}"><i class="far fa-comment"></i></a>
                     <span>Comment</span>
                 </div>
                 <div class="action" id="edit-comment">
-                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
+                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
 
                 </div>
                 <div class="action" id= "deleter">
                     <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i class="fa fa-trash"></i> Delete</a>
                 </div>
+
+
+
+
+
+            </div>
+            <div class="test">
+
+                <div class="comment" th:each="comments :${comment}">
+
+                    <div th:if="${post.getId()} == ${comments.getPost().getId()}">
+
+                        <div class="post-top">
+                            <div class="dp">
+                                <img src="./images/girl.jpg" alt="">
+                            </div>
+                            <div class="post-info">
+                                <p class="name" style="font-size: 15px; font-weight: 300;"><span th:text="${comments.getUser().getFirst_name()}"></span> <span th:text="${comments.getUser().getLast_name()}"></span></p>
+                                <span style="font-size: 15px; font-weight: 300;" class="time"><span th:text="${comments.getDateCreated()}"></span></span>
+                            </div>
+
+                        </div>
+
+                        <div class="post-content">
+                            <div></div>
+
+                            <div  class="post-body"> <p style="font-size: 15px; font-weight: 400; color: grey; text-align: right; "><span th:text="${comments.getComment()}"></span></p></div>
+                            <div>
+                                <img src="" alt="" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="post-bottom">
+                            <div class="action" id="like-post">
+                                <i class="far fa-thumbs-up"></i>
+                                <span>Like</span>
+                            </div>
+
+                            <div class="action" id="edit-comment">
+                                <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
+
+                            </div>
+                            <div class="action" id= "deleter">
+                                <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i class="fa fa-trash"></i> Delete</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
 
             </div>
 

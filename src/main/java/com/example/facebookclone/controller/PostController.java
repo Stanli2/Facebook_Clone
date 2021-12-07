@@ -30,7 +30,8 @@ public class PostController {
 
 
     @PostMapping("/creates")
-    public String createPost(@ModelAttribute Post post, HttpSession httpSession, Model model, Model model1) {
+    public String createPost(@ModelAttribute Post post, HttpSession httpSession, Model model) {
+        System.out.println("Code reaches here");
         UserDetails userDetails = (UserDetails) httpSession.getAttribute("user");
         Post post1 = new Post();
 
@@ -39,12 +40,7 @@ public class PostController {
         post1.setMessage(post.getMessage());
         postServiceImplementation.createPost(post1);
 
-        model.addAttribute("postUser", post1.getUserDetails().getFirst_name() + " " + post1.getUserDetails().getLast_name());
-        model.addAttribute("postTitle", post1.getTitle());
-        model.addAttribute("postContent", post1.getMessage());
-        System.out.println("Post was created with id: " + post1.getId() + ". Created by " + post1.getUserDetails().getFirst_name());
-
-        postServiceImplementation.viewHomePage(model1);
+        postServiceImplementation.viewHomePage(model);
 
         return "/home";
     }
@@ -75,7 +71,7 @@ public class PostController {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         Post post = postServiceImplementation.getPostById(Long.parseLong(id));
         boolean validOwner = post.getUserDetails().equals(userDetails);
-        if(validOwner) {
+        if (validOwner) {
             post.setTitle(title);
             post.setMessage(message);
             post.setUserDetails(userDetails);
@@ -85,4 +81,5 @@ public class PostController {
         postServiceImplementation.viewHomePage(model);
         return "home";
     }
+
 }

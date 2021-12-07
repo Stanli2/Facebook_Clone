@@ -3,16 +3,18 @@ package com.example.facebookclone.services;
 import com.example.facebookclone.model.Post;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface PostServices {
 
-    public void createPost (Post post);
+    void createPost (Post post);
 
-    public Post getPostById(Long id);
+    Post getPostById(Long id);
 
-    public void deletePost(Post post);
+    void deletePost(Post post);
 
-    public Iterable<Post> getAllPost();
+    List<Post> getAllPost();
 
 
 }

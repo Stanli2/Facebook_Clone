@@ -484,3 +484,11 @@ button.comment-btn
     color:rgb(0, 183, 255);
    
 }
+.comment{
+    display: flex;
+    flex-direction: column;
+}
+.test{
+    display: flex;
+    flex-direction: column;
+}

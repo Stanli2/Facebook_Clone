@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xlmn="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Form</title>
     <link rel="stylesheet" href="css/post.css">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
         *{
@@ -201,53 +200,38 @@
 
 
 
-    <div class="container">
-        <div class="wrapper">
-            <section class="post">
-                <header>Create Post</header>
+<div class="container">
+    <div class="wrapper">
+        <section class="post">
+            <header>Post Comment</header>
 
 
-                <form action="/creates" method="post">
-                    <div class="content">
+            <form action="#" th:action="@{/createComment/{id}(id=${post.getId()})}" th:object="${post}" method="post">
+                <div class="content">
 
-                        <div class="details">
-    
-                            <input type="hidden" name="user_id" value="" >
-                            <!-- <textarea name="text" class="title-text" placeholder="What's on your mind, JavaDevs?"  spellcheck="false" type="text"  value=""  required></textarea> -->
+                    <div class="details">
 
-                            <input class="title-text" type="text"  spellcheck="false" name="title" value=""  placeholder="Title" required>
-    
-                        </div>
+                        <input type="hidden" name="user_id" value="" >
+                        <!-- <textarea name="text" class="title-text" placeholder="What's on your mind, JavaDevs?"  spellcheck="false" type="text"  value=""  required></textarea> -->
+
+                        <input class="title-text" type="text"  spellcheck="false" th:field="*{message}" disabled>
+
                     </div>
-                    <textarea class="body-text" name="message"  placeholder="What's on your mind?"  spellcheck="false" type="text"  value=""  required></textarea>
+                </div>
+                <textarea class="body-text"  spellcheck="false" type="text"  value="" name="comment" required></textarea>
 
 
+                <a style="text-decoration: none;  " href="" class="nav-link"></a>
 
+                <button class="form-button">
+                    <a style="text-decoration: none; color:white;  " class="nav-link">Comment</a>
+                </button>
 
-                    <div class="options">
-                        <p>Add to Your Post</p>
-                        <input type="file" name="image" class="add-image" value="add image" accept="image">
-    
-                    </div>
-                    <a style="text-decoration: none;  " href="" class="nav-link"></a>
-    
-                    <button class="form-button">
-                        <a style="text-decoration: none; color:white;  " class="nav-link">Post</a>
-                    </button>
-    
-                </form>
-            </section>
-    
-        </div>
+            </form>
+        </section>
+
     </div>
-    
+</div>
 
-
-
-
-
-
-
-    
 </body>
 </html>
