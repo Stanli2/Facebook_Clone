@@ -8,6 +8,8 @@ import com.example.facebookclone.repository.PostRepository;
 import com.example.facebookclone.services.PostServices;
 import org.springframework.ui.Model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @org.springframework.stereotype.Service
@@ -47,6 +49,7 @@ public class PostServiceImplementation implements PostServices{
         Comments comments = new Comments();
         CommentServiceImplementation serviceImplementation = new CommentServiceImplementation(commentRespository);
         List<Post> posts = this.getAllPost();
+        Collections.reverse(posts);
         List<Comments> listOfComment = serviceImplementation.getAllComments();
 
         model.addAttribute("posts", posts);

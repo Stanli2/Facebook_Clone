@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,6 +31,7 @@ public class UserDetails {
     private String date_of_birth;
     @Column(nullable = false)
     private String gender;
+
 
 
 }

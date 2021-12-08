@@ -42,7 +42,7 @@ public class PostController {
 
         postServiceImplementation.viewHomePage(model);
 
-        return "/home";
+        return "redirect:/home";
     }
 
     @GetMapping("/delete/{postId}")
@@ -53,7 +53,7 @@ public class PostController {
         if (validUser){
             postServiceImplementation.deletePost(post);
         }
-        return "home";
+        return "redirect:/home";
     }
 
     @GetMapping("/editform/{id}")
@@ -79,7 +79,7 @@ public class PostController {
 
         }
         postServiceImplementation.viewHomePage(model);
-        return "home";
+        return "redirect:/home";
     }
 
 }

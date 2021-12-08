@@ -232,10 +232,10 @@
                     <i class="far fa-thumbs-up"></i>
                     <span>Like</span>
                 </div>
-<!--                {id}(id=${post.getId()})-->
+
                 <div class="action" id="make-comment">
-                    <a  style="text-decoration: none; color:grey;" th:href="@{'/createCommentForm/'+${post.getId()}}"><i class="far fa-comment"></i></a>
-                    <span>Comment</span>
+                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/createCommentForm/{id}(id=${post.getId()})}"><i class="far fa-comment"></i>Comment</a>
+
                 </div>
                 <div class="action" id="edit-comment">
                     <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
@@ -285,11 +285,11 @@
                             </div>
 
                             <div class="action" id="edit-comment">
-                                <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
+                                <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editComment/{id}(id=${comments.getId()})}"><i class="fa fa-edit"></i> Edit</a>
 
                             </div>
                             <div class="action" id= "deleter">
-                                <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i class="fa fa-trash"></i> Delete</a>
+                                <a style="text-decoration: none; color: grey;" href="" th:href="${'/deleteComment/' + comments.getId()}"> <i class="fa fa-trash"></i> Delete</a>
                             </div>
 
                         </div>
@@ -323,7 +323,7 @@
                     <button class="comment-btn" href="#"><i class="far fa-thumbs-up"></i> like</button>
                 </div>
                 <div class="action-btns">
-                    <button class="comment-btn" href="#" th:href="${'update/' + post.getId()}"><i class="fa fa-file"></i> post</button>
+                    <button class="comment-btn" href="#" ><i class="fa fa-file"></i> post</button>
     
                 </div>
                 <div class="action-btns">

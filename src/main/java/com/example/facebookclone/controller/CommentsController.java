@@ -7,10 +7,7 @@ import com.example.facebookclone.services.serviceimplementation.CommentServiceIm
 import com.example.facebookclone.services.serviceimplementation.PostServiceImplementation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,6 +43,43 @@ public class CommentsController {
 
         postServiceImplementation.viewHomePage(model);
 
-        return "home";
+        return "redirect:/home";
     }
+
+    @GetMapping("/deleteComment/{commentId}")
+    public String deleteComment(@PathVariable String commentId, HttpSession session, Model model) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        Comments comments = commentServiceImplementation.getCommentById(Long.parseLong(commentId));
+        boolean validUser = comments.getUser().equals(userDetails);
+        if (validUser){
+            commentServiceImplementation.deleteComment(comments);
+        }
+        postServiceImplementation.viewHomePage(model);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/editComment/{commentId}")
+    public String editCommentForm(@PathVariable(value = "commentId") Long commentId, Model model) {
+        Comments comments = commentServiceImplementation.getCommentById(commentId);
+
+        model.addAttribute("comment", comments);
+
+        return "editComment";
+    }
+
+    @PostMapping("/updateComment/{commentId}")
+    public String updateComment(@PathVariable String commentId, HttpSession session, @RequestParam(value = "comment") String comment, Model model) {
+        UserDetails userDetails = (UserDetails) session.getAttribute("user");
+        Comments comments = commentServiceImplementation.getCommentById(Long.parseLong(commentId));
+        boolean validOwner = comments.getUser().equals(userDetails);
+        if (validOwner) {
+            comments.setComment(comment);
+            commentServiceImplementation.createComment(comments);
+
+        }
+        postServiceImplementation.viewHomePage(model);
+        return "redirect:/home";
+    }
+
 }
+
