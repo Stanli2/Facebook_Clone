@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CommentsController {
 
-    private CommentServiceImplementation commentServiceImplementation;
-    private PostServiceImplementation postServiceImplementation;
+    private final CommentServiceImplementation commentServiceImplementation;
+    private final PostServiceImplementation postServiceImplementation;
 
 
     public CommentsController(CommentServiceImplementation commentServiceImplementation, PostServiceImplementation postServiceImplementation) {
@@ -27,6 +27,7 @@ public class CommentsController {
     public String commentForm(@PathVariable(value = "id") Long id, Model model) {
         Post post = postServiceImplementation.getPostById(id);
         model.addAttribute("post", post);
+
         return "comment_form";
     }
 
@@ -51,7 +52,7 @@ public class CommentsController {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         Comments comments = commentServiceImplementation.getCommentById(Long.parseLong(commentId));
         boolean validUser = comments.getUser().equals(userDetails);
-        if (validUser){
+        if (validUser) {
             commentServiceImplementation.deleteComment(comments);
         }
         postServiceImplementation.viewHomePage(model);

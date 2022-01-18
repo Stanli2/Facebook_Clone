@@ -36,7 +36,7 @@ public class UserDetailController {
     }
 
     @GetMapping("/home")
-    public String viewHome(Model model){
+    public String viewHome(Model model) {
         postServiceImplementation.viewHomePage(model);
         return "home";
     }
@@ -44,7 +44,6 @@ public class UserDetailController {
     @PostMapping("/signup")
     public ModelAndView save(@ModelAttribute UserDetails userDetails) {
 
-        System.out.println(userDetails);
         UserDetails userDetail = new UserDetails();
         userDetail.setFirst_name(userDetails.getFirst_name());
         userDetail.setLast_name(userDetails.getLast_name());
@@ -58,7 +57,7 @@ public class UserDetailController {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("signin");
-        modelAndView.addObject("userDetail",userDetails);
+        modelAndView.addObject("userDetail", userDetails);
         return modelAndView;
     }
 
@@ -66,7 +65,7 @@ public class UserDetailController {
     public String login(@ModelAttribute UserDetails userDetails, Model model, HttpSession httpSession, Model model1) {
         System.out.println("Login request: " + userDetails);
         UserDetails loggedIn = userService.login(userDetails.getEmail(), userDetails.getPassword());
-        if(loggedIn != null) {
+        if (loggedIn != null) {
             httpSession.setAttribute("user", loggedIn);
             model.addAttribute("userLogin", loggedIn.getFirst_name() + " " + loggedIn.getLast_name());
 

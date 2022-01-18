@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en" xlmn="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,7 @@
     <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/home.css">
 
     <title>Facebook</title>
@@ -175,7 +174,8 @@
                 </div>
 
                 <a style="border: none; width:90%; padding: 6px;" href="/post" class="btn btn-success">
-                    <input style="border:none; background:#eee; width: 85%; padding: 10px 6px; border-radius: 10px;" type="text" placeholder="What's on your mind?" />
+                    <input style="border:none; background:#eee; width: 85%; padding: 10px 6px; border-radius: 10px;"
+                           type="text" placeholder="What's on your mind?"/>
                 </a>
 
             </div>
@@ -197,10 +197,6 @@
         </div>
 
 
-
-
-
-
         <div class="post created-post" th:each="post:${posts}">
 
             <div class="post-top">
@@ -208,7 +204,8 @@
                     <img src="./images/girl.jpg" alt="">
                 </div>
                 <div class="post-info">
-                    <p class="name"><span th:text="${post.getUserDetails().getFirst_name()}"></span> <span th:text="${post.getUserDetails().getLast_name()}"></span></p>
+                    <p class="name"><span th:text="${post.getUserDetails().getFirst_name()}"></span> <span
+                            th:text="${post.getUserDetails().getLast_name()}"></span></p>
                     <span class="time"><span th:text="${post.getDate_created()}"></span></span>
                 </div>
                 <i class="fas fa-ellipsis-h"></i>
@@ -217,11 +214,11 @@
             <div class="post-content">
                 <div></div>
 
-                <div class="title"><h4> <span th:text="${post.getTitle()}"></span></h4>  </div>
+                <div class="title"><h4><span th:text="${post.getTitle()}"></span></h4></div>
 
-              <div class="post-body"> <p><span th:text="${post.getMessage()}"></span></div>
+                <div class="post-body"><p><span th:text="${post.getMessage()}"></span></div>
                 <div>
-                    <img src="" alt="" />
+                    <img src="" alt=""/>
 
                 </div>
 
@@ -234,19 +231,20 @@
                 </div>
 
                 <div class="action" id="make-comment">
-                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/createCommentForm/{id}(id=${post.getId()})}"><i class="far fa-comment"></i>Comment</a>
+                    <a style="text-decoration: none; color:grey;" href="#"
+                       th:href="@{/createCommentForm/{id}(id=${post.getId()})}"><i
+                            class="far fa-comment"></i>Comment</a>
 
                 </div>
                 <div class="action" id="edit-comment">
-                    <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
+                    <a style="text-decoration: none; color:grey;" href="#"
+                       th:href="@{/editform/{id}(id=${post.getId()})}"><i class="fa fa-edit"></i> Edit</a>
 
                 </div>
-                <div class="action" id= "deleter">
-                    <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i class="fa fa-trash"></i> Delete</a>
+                <div class="action" id="deleter">
+                    <a style="text-decoration: none; color: grey;" href="" th:href="${'delete/' + post.getId()}"> <i
+                            class="fa fa-trash"></i> Delete</a>
                 </div>
-
-
-
 
 
             </div>
@@ -261,8 +259,11 @@
                                 <img src="./images/girl.jpg" alt="">
                             </div>
                             <div class="post-info">
-                                <p class="name" style="font-size: 15px; font-weight: 300;"><span th:text="${comments.getUser().getFirst_name()}"></span> <span th:text="${comments.getUser().getLast_name()}"></span></p>
-                                <span style="font-size: 15px; font-weight: 300;" class="time"><span th:text="${comments.getDateCreated()}"></span></span>
+                                <p class="name" style="font-size: 15px; font-weight: 300;"><span
+                                        th:text="${comments.getUser().getFirst_name()}"></span> <span
+                                        th:text="${comments.getUser().getLast_name()}"></span></p>
+                                <span style="font-size: 15px; font-weight: 300;" class="time"><span
+                                        th:text="${comments.getDateCreated()}"></span></span>
                             </div>
 
                         </div>
@@ -270,9 +271,11 @@
                         <div class="post-content">
                             <div></div>
 
-                            <div  class="post-body"> <p style="font-size: 15px; font-weight: 400; color: grey; text-align: right; "><span th:text="${comments.getComment()}"></span></p></div>
+                            <div class="post-body"><p
+                                    style="font-size: 15px; font-weight: 400; color: grey; text-align: right; "><span
+                                    th:text="${comments.getComment()}"></span></p></div>
                             <div>
-                                <img src="" alt="" />
+                                <img src="" alt=""/>
 
                             </div>
 
@@ -285,18 +288,19 @@
                             </div>
 
                             <div class="action" id="edit-comment">
-                                <a  style="text-decoration: none; color:grey;" href="#" th:href="@{/editComment/{id}(id=${comments.getId()})}"><i class="fa fa-edit"></i> Edit</a>
+                                <a style="text-decoration: none; color:grey;" href="#"
+                                   th:href="@{/editComment/{id}(id=${comments.getId()})}"><i class="fa fa-edit"></i>
+                                    Edit</a>
 
                             </div>
-                            <div class="action" id= "deleter">
-                                <a style="text-decoration: none; color: grey;" href="" th:href="${'/deleteComment/' + comments.getId()}"> <i class="fa fa-trash"></i> Delete</a>
+                            <div class="action" id="deleter">
+                                <a style="text-decoration: none; color: grey;" href=""
+                                   th:href="${'/deleteComment/' + comments.getId()}"> <i class="fa fa-trash"></i> Delete</a>
                             </div>
 
                         </div>
 
                     </div>
-
-
 
 
                 </div>
@@ -305,38 +309,36 @@
             </div>
 
 
-
         </div>
 
-<!--          Comment           -->
+        <!--          Comment           -->
 
         <div class="comment-container">
-     
-            <form action="" method="">
-             <textarea class="comment-text" placeholder='Add Your Comment'></textarea>
-    
-              <div class="btn-mother">
-    
-    
-    
-                <div class="action-btns" id="like-comment">
-                    <button class="comment-btn" href="#"><i class="far fa-thumbs-up"></i> like</button>
-                </div>
-                <div class="action-btns">
-                    <button class="comment-btn" href="#" ><i class="fa fa-file"></i> post</button>
-    
-                </div>
-                <div class="action-btns">
-                    <button class="comment-btn" href="#"><i class="fa fa-edit"></i> Edit</button>
-    
-                </div>
-                <div class="action-btns">
-                    <button class="comment-btn"  href=""> <i class="fa fa-trash"></i> Delete</button>
-                </div>
 
-              </div>
+            <form action="" method="">
+                <textarea class="comment-text" placeholder='Add Your Comment'></textarea>
+
+                <div class="btn-mother">
+
+
+                    <div class="action-btns" id="like-comment">
+                        <button class="comment-btn" href="#"><i class="far fa-thumbs-up"></i> like</button>
+                    </div>
+                    <div class="action-btns">
+                        <button class="comment-btn" href="#"><i class="fa fa-file"></i> post</button>
+
+                    </div>
+                    <div class="action-btns">
+                        <button class="comment-btn" href="#"><i class="fa fa-edit"></i> Edit</button>
+
+                    </div>
+                    <div class="action-btns">
+                        <button class="comment-btn" href=""><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+
+                </div>
             </form>
-          </div>
+        </div>
         <a style="text-decoration: none;  " href="" class="nav-link"></a>
 
 
@@ -419,62 +421,59 @@
 </div>
 
 
-
 <script>
 
 
+    var feild = document.querySelector('textarea');
+    var backUp = feild.getAttribute('placeholder');
+    var btn = document.querySelector('.btn');
+    var clear = document.getElementById('clear')
+    // var commentEditer = document.getElementById('editer');
+    // var commentDeleter = document.getElementById('deleter')
+    var commentContainer = document.querySelector('.comment-container');
+    var addComments = document.getElementById('edit-comment');
+    var editComments = document.getElementById('make-comment');
+    var likePost = document.getElementById('like-post');
+    var likeComment = document.getElementById('like-comment')
+    likeComment.addEventListener('click', function () {
+        this.classList.toggle("like-color");
 
-var feild = document.querySelector('textarea');
-var backUp = feild.getAttribute('placeholder');
-var btn = document.querySelector('.btn');
-var clear = document.getElementById('clear')
-// var commentEditer = document.getElementById('editer');
-// var commentDeleter = document.getElementById('deleter')
-var commentContainer = document.querySelector('.comment-container');
-var addComments = document.getElementById('edit-comment');
-var editComments = document.getElementById('make-comment');
-var likePost = document.getElementById('like-post');
-var likeComment = document.getElementById('like-comment')
-likeComment.addEventListener('click',function(){
-    this.classList.toggle("like-color");
+    })
 
-})
+    likePost.addEventListener('click', function () {
+        this.classList.toggle("like-color");
 
-likePost.addEventListener('click',function(){
-    this.classList.toggle("like-color");
+    })
+    addComments.addEventListener('click', function () {
+        commentContainer.classList.toggle('showComment');
 
-})
-addComments.addEventListener('click', function(){
-    commentContainer.classList.toggle('showComment');
+    });
+    editComments.addEventListener('click', function () {
+        commentContainer.classList.toggle('showComment');
 
-});
-editComments.addEventListener('click', function(){
-    commentContainer.classList.toggle('showComment');
-
-});
+    });
 
 
-feild.onfocus = function(){
-    this.setAttribute('placeholder', '');
-    this.style.borderColor = 'grey';
-    // btn.style.display = 'flex'
-    btn.classList.add("spread");
+    feild.onfocus = function () {
+        this.setAttribute('placeholder', '');
+        this.style.borderColor = 'grey';
+        // btn.style.display = 'flex'
+        btn.classList.add("spread");
 
-}
+    }
 
-feild.onblur = function(){
-    this.setAttribute('placeholder',backUp);
-    this.style.borderColor = '#aaa'
-}
+    feild.onblur = function () {
+        this.setAttribute('placeholder', backUp);
+        this.style.borderColor = '#aaa'
+    }
 
-clear.onclick = function(){
-    btn.style.display = 'none';
-    feild.value = '';
-}
+    clear.onclick = function () {
+        btn.style.display = 'none';
+        feild.value = '';
+    }
 
 
 </script>
-
 
 
 </body>

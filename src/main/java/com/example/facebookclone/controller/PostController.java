@@ -1,6 +1,6 @@
 package com.example.facebookclone.controller;
 
-import com.example.facebookclone.model.Comments;
+
 import com.example.facebookclone.model.Post;
 import com.example.facebookclone.model.UserDetails;
 import com.example.facebookclone.services.serviceimplementation.PostServiceImplementation;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PostController {
 
-    private PostServiceImplementation postServiceImplementation;
+    private final PostServiceImplementation postServiceImplementation;
 
 
     public PostController(PostServiceImplementation postServiceImplementation) {
@@ -23,10 +23,10 @@ public class PostController {
     @GetMapping("/post")
     public String postPage(HttpSession httpSession) {
         UserDetails userDetails = (UserDetails) httpSession.getAttribute("user");
+
         System.out.println("Session user is " + userDetails.getFirst_name() + " " + userDetails.getLast_name());
         return "post";
     }
-
 
 
     @PostMapping("/creates")
@@ -50,14 +50,14 @@ public class PostController {
         UserDetails userDetails = (UserDetails) session.getAttribute("user");
         Post post = postServiceImplementation.getPostById(Long.parseLong(postId));
         boolean validUser = post.getUserDetails().equals(userDetails);
-        if (validUser){
+        if (validUser) {
             postServiceImplementation.deletePost(post);
         }
         return "redirect:/home";
     }
 
     @GetMapping("/editform/{id}")
-    public String editpost(@PathVariable(value = "id")Long id, Model model){
+    public String editpost(@PathVariable(value = "id") Long id, Model model) {
         Post post = postServiceImplementation.getPostById(id);
 
         //set post as a model to pre-populate the form

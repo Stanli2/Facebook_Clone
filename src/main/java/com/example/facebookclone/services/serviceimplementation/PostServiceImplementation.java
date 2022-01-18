@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class PostServiceImplementation implements PostServices{
+public class PostServiceImplementation implements PostServices {
 
     private PostRepository postRepository;
     private CommentRespository commentRespository;
@@ -44,7 +44,7 @@ public class PostServiceImplementation implements PostServices{
     }
 
 
-    public void viewHomePage(Model model){
+    public void viewHomePage(Model model) {
         Post post = new Post();
         Comments comments = new Comments();
         CommentServiceImplementation serviceImplementation = new CommentServiceImplementation(commentRespository);

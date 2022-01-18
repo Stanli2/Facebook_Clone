@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface PostServices {
 
-    void createPost (Post post);
+    void createPost(Post post);
 
     Post getPostById(Long id);
 

@@ -4,13 +4,14 @@ import com.example.facebookclone.model.UserDetails;
 import com.example.facebookclone.repository.UserDetailRepository;
 import com.example.facebookclone.services.Services;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 @org.springframework.stereotype.Service
 public class UserServiceImpl implements Services {
 
 
-    private UserDetailRepository userDetailRepository;
+    private final UserDetailRepository userDetailRepository;
 
 
     @Autowired
@@ -25,7 +26,7 @@ public class UserServiceImpl implements Services {
 
     @Override
     public UserDetails saveUser(UserDetails userDetails) {
-        if(userDetailRepository.findByEmail(userDetails.getEmail()).isPresent()) {
+        if (userDetailRepository.findByEmail(userDetails.getEmail()).isPresent()) {
             System.out.println("You can't repeat this mail");
             return null;
         }
